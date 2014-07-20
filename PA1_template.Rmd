@@ -11,7 +11,7 @@ Loading and preprocessing the data
 activity <- read.csv("~/Desktop/COURSERA R/Reproducible Research/activity.csv", stringsAsFactors=TRUE)
 ```
 ---
-# What is mean total number of steps taken per day?
+What is mean total number of steps taken per day?
 ---
 Histogram of the total number of steps taken each day:
 ---
@@ -29,6 +29,7 @@ meanNA<-tapply(activityNoNA$steps, activityNoNA$date,mean)
 totalmeanwithNA<-mean(meanNA[complete.cases(meanNA)])
 totalmeanwithNA
 ```
+---
 Median number of steps taken each day:
 ---
 ```{r}
@@ -37,6 +38,7 @@ medianNA
 totalmedianwithNA<-median(medianNA[complete.cases(medianNA)])
 totalmedianwithNA
 ```
+---
 What is the average daily activity pattern?
 ---
 Time series plot of the average number of steps taken (averaged across all days) versus the 5-minute intervals (5-minute interval (x-axis),average number of steps taken, averaged across all days (y-axis)):

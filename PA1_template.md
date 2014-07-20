@@ -12,7 +12,7 @@ Loading and preprocessing the data
 activity <- read.csv("~/Desktop/COURSERA R/Reproducible Research/activity.csv", stringsAsFactors=TRUE)
 ```
 ---
-# What is mean total number of steps taken per day?
+What is mean total number of steps taken per day?
 ---
 Histogram of the total number of steps taken each day:
 ---
@@ -23,6 +23,7 @@ hist(with(activity, tapply(steps, list(date), sum)),breaks=61)
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+---
 Mean of steps taken each day:
 ---
 
@@ -65,11 +66,41 @@ totalmeanwithNA
 ```
 ## [1] 37.38
 ```
+---
 Median number of steps taken each day:
 ---
 
 ```r
 medianNA<-tapply(activityNoNA$steps, activityNoNA$date,median)
+medianNA
+```
+
+```
+## 2012-10-01 2012-10-02 2012-10-03 2012-10-04 2012-10-05 2012-10-06 
+##         NA          0          0          0          0          0 
+## 2012-10-07 2012-10-08 2012-10-09 2012-10-10 2012-10-11 2012-10-12 
+##          0         NA          0          0          0          0 
+## 2012-10-13 2012-10-14 2012-10-15 2012-10-16 2012-10-17 2012-10-18 
+##          0          0          0          0          0          0 
+## 2012-10-19 2012-10-20 2012-10-21 2012-10-22 2012-10-23 2012-10-24 
+##          0          0          0          0          0          0 
+## 2012-10-25 2012-10-26 2012-10-27 2012-10-28 2012-10-29 2012-10-30 
+##          0          0          0          0          0          0 
+## 2012-10-31 2012-11-01 2012-11-02 2012-11-03 2012-11-04 2012-11-05 
+##          0         NA          0          0         NA          0 
+## 2012-11-06 2012-11-07 2012-11-08 2012-11-09 2012-11-10 2012-11-11 
+##          0          0          0         NA         NA          0 
+## 2012-11-12 2012-11-13 2012-11-14 2012-11-15 2012-11-16 2012-11-17 
+##          0          0         NA          0          0          0 
+## 2012-11-18 2012-11-19 2012-11-20 2012-11-21 2012-11-22 2012-11-23 
+##          0          0          0          0          0          0 
+## 2012-11-24 2012-11-25 2012-11-26 2012-11-27 2012-11-28 2012-11-29 
+##          0          0          0          0          0          0 
+## 2012-11-30 
+##         NA
+```
+
+```r
 totalmedianwithNA<-median(medianNA[complete.cases(medianNA)])
 totalmedianwithNA
 ```
@@ -77,7 +108,8 @@ totalmedianwithNA
 ```
 ## [1] 0
 ```
-# What is the average daily activity pattern?
+---
+What is the average daily activity pattern?
 ---
 Time series plot of the average number of steps taken (averaged across all days) versus the 5-minute intervals (5-minute interval (x-axis),average number of steps taken, averaged across all days (y-axis)):
 ---
@@ -89,6 +121,7 @@ plot(activityNoNA$interval,activityNoNA$averageacrossdays, type="l", xlab="5-min
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+---
 5-minute interval that, on average, contains the maximum number of steps:
 ---
 
@@ -100,7 +133,7 @@ activityNoNA$interval[which.max(activityNoNA$averageacrossdays)]
 ## [1] 835
 ## 288 Levels: 0 5 10 15 20 25 30 35 40 45 50 55 100 105 110 115 120 ... 2355
 ```
-# Imputing missing values
+Imputing missing values
 ----
 Total number of missing values in the dataset (i.e. the total number of rows with NAs)
 ---
@@ -112,7 +145,7 @@ nrow(activity)- nrow(activityNoNA)
 ```
 ## [1] 2304
 ```
-# Strategy for imputing missing data:
+Strategy for imputing missing data:
 Replace each NA with the average number of steps taken across all days for the specific interval. 
 actReplNA is a new dataset thaat is equal to the original data but with the missing data filled in.
 ---
@@ -286,7 +319,7 @@ sumReplNA
 ##      10766
 ```
 ---
-# Are there differences in activity patterns between weekdays and weekends?
+Are there differences in activity patterns between weekdays and weekends?
 ---
 Yes, there are:
 
