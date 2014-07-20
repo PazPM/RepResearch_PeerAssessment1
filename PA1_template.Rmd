@@ -33,6 +33,7 @@ Median number of steps taken each day:
 ---
 ```{r}
 medianNA<-tapply(activityNoNA$steps, activityNoNA$date,median)
+medianNA
 totalmedianwithNA<-median(medianNA[complete.cases(medianNA)])
 totalmedianwithNA
 ```
